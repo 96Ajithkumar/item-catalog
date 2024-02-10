@@ -22,7 +22,6 @@ const SideDrawer = ({show, click}) => {
     sideDrawerClass.push('show')
   }
   const _handleLogout = () => {
-    // console.log('click')
     dispatch(setInitialState())
     logout()
     history.push('/')

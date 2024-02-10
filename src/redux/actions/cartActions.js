@@ -6,7 +6,6 @@ import {convertToCartData} from '../../utils/utils.function'
 export const addToCart = (id, qty) => async dispatch => {
   const {data} = await Api.getRequest(`/api/products/${id}`)
   const product = JSON.parse(data)
-  // console.log(product)
   dispatch({
     type: actionTypes.ADD_TO_CART,
     payload: {
@@ -35,9 +34,7 @@ export const removeFromCart =
 export const fetchCart = () => async dispatch => {
   try {
     const {data: strigifyData} = await Api.getRequest(`/api/cart/`)
-    // console.log({strigifyData})
     const {carts} = JSON.parse(strigifyData)
-    // console.log(carts)
 
     dispatch({
       type: actionTypes.FETCH_MY_CART,
@@ -46,7 +43,7 @@ export const fetchCart = () => async dispatch => {
       },
     })
   } catch (e) {
-    console.log('EROROR :  ', e)
+    console.error('ERROR : ', e)
   }
 }
 

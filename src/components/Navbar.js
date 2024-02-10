@@ -1,7 +1,6 @@
 import './Navbar.css'
 import {Link, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {useMemo} from 'react'
 import {logout} from '../utils/localstorage'
 import {setInitialState} from '../redux/actions/userAction'
 
@@ -10,7 +9,6 @@ const Navbar = ({click}) => {
   const history = useHistory()
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
-  // console.log({user})
 
   const {cartItems} = cart
 
@@ -19,7 +17,6 @@ const Navbar = ({click}) => {
   }
 
   const _handleLogout = () => {
-    // console.log('click')
     dispatch(setInitialState())
     logout()
     history.push('/')
@@ -28,7 +25,7 @@ const Navbar = ({click}) => {
   return (
     <nav className="navbar">
       <div className="navbar__logo">
-        <h2>JSOM-E-COMERCE</h2>
+        <h2>ITEM CATALOG</h2>
       </div>
 
       <ul className="navbar__links">

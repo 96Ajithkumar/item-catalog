@@ -2,7 +2,6 @@ import { config } from "./config";
 import { getToken } from "./localstorage";
 
 const getRequest = async (path) => {
-  // console.log(getToken())
   try {
     const params = {
       method: "GET",
@@ -11,7 +10,6 @@ const getRequest = async (path) => {
       },
     };
     const res = await fetch(config.baseURL + path, params);
-    console.log({ res });
     const data = await res.text();
     return { statusCode: res.status, data };
   } catch (e) {
@@ -32,13 +30,11 @@ const postRequest = async (path, body) => {
     };
 
     const res = await fetch(config.baseURL + path, params);
-    // console.log(res)
 
     const data = await res.text();
-    // console.log({data})
     return { statusCode: res.status, data };
   } catch (e) {
-    console.log(`error in post Request (${path}) :- `, e);
+    console.error(`error in post Request (${path}) :- `, e);
   }
 };
 
@@ -57,7 +53,7 @@ const DeleteRequest = async (path) => {
     const data = await res.text();
     return { statusCode: res.status, data };
   } catch (e) {
-    console.log(`error in Delete Request (${path}) :- `, e);
+    console.error(`error in Delete Request (${path}) :- `, e);
   }
 };
 
@@ -77,7 +73,7 @@ const putRequest = async (path, body) => {
     const data = await res.text();
     return { statusCode: res.status, data };
   } catch (e) {
-    console.log(`error in PUT Request (${path}) :- `, e);
+    console.error(`error in PUT Request (${path}) :- `, e);
   }
 };
 

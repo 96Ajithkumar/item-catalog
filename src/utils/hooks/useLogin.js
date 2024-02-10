@@ -1,5 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useCallback, useEffect, useState} from 'react'
 import {useHistory} from 'react-router'
 import {Api} from '../Api'
 import {logout} from '../localstorage'
@@ -12,7 +11,6 @@ function useLogin() {
   const {replace} = useHistory()
   const checkLogin = useCallback(async () => {
     const {statusCode, data} = await Api.getRequest(`/api/user/me`)
-    // console.log({statusCode, data})
     if (statusCode === 400 || statusCode === 500) {
       replace('/')
       logout()
