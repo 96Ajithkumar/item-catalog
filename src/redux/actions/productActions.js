@@ -2,11 +2,15 @@ import * as actionTypes from '../constants/productConstants'
 import axios from 'axios'
 import {Api} from '../../utils/Api'
 
-export const getProducts = () => async dispatch => {
+export const getProducts = (searchText = '') => async dispatch => {
+  let searchQuery = '';
+  if (searchText !== '' && searchText.trim().length > 3) {
+    searchQuery = `?search=${searchText}`;
+  }
   try {
     dispatch({type: actionTypes.GET_PRODUCTS_REQUEST})
 
-    const {data} = await Api.getRequest('/api/products')
+    const {data} = await Api.getRequest(`/api/products${searchQuery}`)
 
     dispatch({
       type: actionTypes.GET_PRODUCTS_SUCCESS,

@@ -10,7 +10,7 @@ const Navbar = ({click}) => {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
-  const {cartItems} = cart
+  const {cartItems} = cart;
 
   const getCartCount = () => {
     return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0)
