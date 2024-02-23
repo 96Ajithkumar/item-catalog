@@ -5,19 +5,21 @@ import {convertToCartData} from '../../utils/utils.function'
 export const addToCart = (id, qty) => async dispatch => {
   const {data} = await Api.getRequest(`/api/products/${id}`)
   const product = JSON.parse(data)
-  dispatch({
-    type: actionTypes.ADD_TO_CART,
-    payload: {
-      product: product._id,
-      name: product.name,
-      imageUrl: product.imageUrl,
-      price: product.price,
-      countInStock: product.countInStock,
-      qty,
-    },
+  Api.postRequest('/api/cart', {productId: id, count: qty}).then(res => {
+    const response = JSON.parse(res.data).cart;
+    dispatch({
+      type: actionTypes.ADD_TO_CART,
+      payload: {
+        product: product._id,
+        name: product.name,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        countInStock: product.countInStock,
+        qty,
+        _id: response._id
+      },
+    })
   })
-
-  Api.postRequest('/api/cart', {productId: id, count: qty})
 }
 
 export const removeFromCart =
